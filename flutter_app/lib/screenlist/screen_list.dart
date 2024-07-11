@@ -74,93 +74,80 @@ class _ScreenList2State extends State<ScreenList>
       );
     }
 
-    return Stack(
-      children: [
-        ColoredBox(
-          color: const Color(0xFF623CEA),
-          child: Image.asset(
-            'assets/Background.png',
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-          ),
-        ),
-        BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-            extendBody: true,
-            bottomNavigationBar: Container(
-              padding: const EdgeInsets.only(top: 4),
-              decoration: BoxDecoration(
-                border: GradientBoxBorder(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.white.withOpacity(0.4),
-                      Colors.white.withOpacity(0),
-                      Colors.white.withOpacity(0),
-                      Colors.white.withOpacity(0.1),
-                    ],
-                  ),
-                ),
-                color: theme.colors.surface.withOpacity(0.4),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-                gradient: LinearGradient(
-                  colors: [
-                    theme.colors.surface.withOpacity(0.4),
-                    theme.colors.surface.withOpacity(0.8),
-                  ],
-                  begin: Alignment.center,
-                  tileMode: TileMode.mirror,
-                ),
-              ),
-              child: SalomonBottomBar(
-                selectedColorOpacity: 1,
-                onTap: changeTab,
-                currentIndex: _selectedIndex,
-                items: <SalomonBottomBarItem>[
-                  salomonBarItem(
-                    icon: Icons.home_outlined,
-                    title: 'Accueil',
-                    index: 0,
-                  ),
-                  salomonBarItem(
-                    title: 'Analyse',
-                    icon: Icons.bar_chart_outlined,
-                    index: 1,
-                  ),
-                  salomonBarItem(
-                    title: 'Taches',
-                    icon: Icons.fact_check_outlined,
-                    index: 2,
-                  ),
-                  salomonBarItem(
-                    title: 'Profile',
-                    icon: Icons.person,
-                    index: 3,
-                  ),
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        extendBody: true,
+        bottomNavigationBar: Container(
+          padding: const EdgeInsets.only(top: 4),
+          decoration: BoxDecoration(
+            border: GradientBoxBorder(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.white.withOpacity(0.4),
+                  Colors.white.withOpacity(0),
+                  Colors.white.withOpacity(0),
+                  Colors.white.withOpacity(0.1),
                 ],
               ),
             ),
-            body: Stack(
-              children: [
-                Image.asset(
-                  'assets/Background.png',
-                  fit: BoxFit.cover,
-                  height: double.infinity,
-                  width: double.infinity,
-                ),
-                SafeArea(child: page),
+            color: theme.colors.surface.withOpacity(0.4),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(16),
+              topRight: Radius.circular(16),
+            ),
+            gradient: LinearGradient(
+              colors: [
+                theme.colors.surface.withOpacity(0.4),
+                theme.colors.surface.withOpacity(0.8),
               ],
+              begin: Alignment.center,
+              tileMode: TileMode.mirror,
             ),
           ),
+          child: SalomonBottomBar(
+            selectedColorOpacity: 1,
+            onTap: changeTab,
+            currentIndex: _selectedIndex,
+            items: <SalomonBottomBarItem>[
+              salomonBarItem(
+                icon: Icons.home_outlined,
+                title: 'Accueil',
+                index: 0,
+              ),
+              salomonBarItem(
+                title: 'Analyse',
+                icon: Icons.bar_chart_outlined,
+                index: 1,
+              ),
+              salomonBarItem(
+                title: 'Taches',
+                icon: Icons.fact_check_outlined,
+                index: 2,
+              ),
+              salomonBarItem(
+                title: 'Profile',
+                icon: Icons.person,
+                index: 3,
+              ),
+            ],
+          ),
         ),
-      ],
+        body: Stack(
+          children: [
+            Image.asset(
+              'assets/Background.png',
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
+            ),
+            SafeArea(child: page),
+          ],
+        ),
+      ),
     );
   }
 }

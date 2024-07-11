@@ -1,3 +1,7 @@
+// ignore_for_file: avoid-long-functions
+
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
@@ -8,75 +12,30 @@ import 'package:flutter_bam_theme/src/theme/data/cupertino_navigation_bar_theme.
 import 'package:flutter_bam_theme/src/theme/data/durations.dart';
 import 'package:flutter_bam_theme/src/theme/data/radius.dart';
 import 'package:flutter_bam_theme/src/theme/data/sizes.dart';
+import 'package:flutter_shaders/flutter_shaders.dart';
 
 /// CDApp custom [ThemeData]. `ThemeMode.valIsere` version.
 ThemeData get dojo {
   const colors = ThemeColorsData.light();
+
   return _getThemeDataFromColors(colors);
 }
 
 ThemeData get dojoDark {
   const colors = ThemeColorsData.dark();
+
   return _getThemeDataFromColors(colors);
 }
 
-ThemeData _getThemeDataFromColors(ThemeColorsData colors) {
+ThemeData _getThemeDataFromColors(
+  ThemeColorsData colors,
+) {
   final fallbackTheme = ThemeData.fallback();
   final textTheme = ThemeTypographyData.fromColors(colors);
   const borderRadiusTheme = ThemeRadiusData.regular();
   const sizesTheme = ThemeSizeData.regular();
 
   return fallbackTheme.copyWith(
-    bottomSheetTheme: BottomSheetThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(borderRadiusTheme.s),
-      ),
-    ),
-    highlightColor: colors.secondary.withOpacity(0.1),
-    splashColor: colors.secondary.withOpacity(0.3),
-    snackBarTheme: const SnackBarThemeData(elevation: 0),
-    appBarTheme: AppBarTheme(
-      backgroundColor: colors.background,
-      elevation: 0,
-      // The height of the Material app bar to match the height of the
-      // Cupertino navigation bar.
-      toolbarHeight: kMinInteractiveDimensionCupertino,
-      titleTextStyle: textTheme.headlineSmall!.copyWith(
-        color: colors.onPrimary,
-      ),
-    ),
-    iconTheme: IconThemeData(
-      color: colors.text,
-      size: sizesTheme.l,
-    ),
-    dividerTheme: fallbackTheme.dividerTheme.copyWith(
-      space: 1,
-      thickness: 1,
-      color: colors.grey50,
-    ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: colors.background,
-      selectedLabelStyle:
-          textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
-      unselectedLabelStyle:
-          textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
-    ),
-    tabBarTheme: TabBarTheme(
-      indicator: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: colors.primary,
-            width: sizesTheme.xxxs,
-          ),
-        ),
-      ),
-      indicatorSize: TabBarIndicatorSize.label,
-      labelPadding: sizesTheme.asInsets.m.horizontalOnly,
-      labelStyle: textTheme.bodyMedium!.copyWith(height: 1),
-      labelColor: colors.primary,
-      unselectedLabelColor: colors.primaryLight,
-      unselectedLabelStyle: textTheme.bodyMedium!.copyWith(height: 1),
-    ),
     cupertinoOverrideTheme: CupertinoThemeData(
       barBackgroundColor: colors.background,
       textTheme: CupertinoTextThemeData(
@@ -84,82 +43,6 @@ ThemeData _getThemeDataFromColors(ThemeColorsData colors) {
         navLargeTitleTextStyle: textTheme.titleMedium,
         navTitleTextStyle: textTheme.titleSmall,
         dateTimePickerTextStyle: textTheme.bodyMedium,
-      ),
-    ),
-    scaffoldBackgroundColor: colors.background,
-    textTheme: textTheme,
-    colorScheme: colors.colorsScheme,
-    chipTheme: fallbackTheme.chipTheme.copyWith(
-      backgroundColor: colors.grey50,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(borderRadiusTheme.m),
-      ),
-      side: BorderSide.none,
-      elevation: 0,
-      padding: EdgeInsets.symmetric(
-        horizontal: sizesTheme.s,
-        vertical: sizesTheme.xxxs,
-      ),
-      labelPadding: EdgeInsets.zero,
-    ),
-    cardTheme: fallbackTheme.cardTheme.copyWith(
-      color: colors.colorsScheme.surface,
-      shadowColor: colors.colorsScheme.shadow,
-      surfaceTintColor: colors.colorsScheme.surfaceTint,
-      elevation: 0,
-      margin: EdgeInsets.zero,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(borderRadiusTheme.s),
-        side: BorderSide(color: colors.colorsScheme.onSurface),
-      ),
-    ),
-    listTileTheme: fallbackTheme.listTileTheme.copyWith(
-      contentPadding: sizesTheme.asInsets.m.horizontalOnly,
-      horizontalTitleGap: sizesTheme.xxs,
-      minLeadingWidth: sizesTheme.xl,
-      iconColor: colors.colorsScheme.onSurface,
-    ),
-    inputDecorationTheme: fallbackTheme.inputDecorationTheme.copyWith(
-      errorStyle: textTheme.bodyMedium!.copyWith(color: colors.onError),
-      errorMaxLines: 1,
-      enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: colors.grey100,
-          width: 2,
-        ),
-        gapPadding: sizesTheme.xs,
-      ),
-      border: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: colors.grey100,
-          width: 2,
-        ),
-        gapPadding: sizesTheme.xs,
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: colors.primary,
-          width: 2,
-        ),
-        gapPadding: sizesTheme.xs,
-      ),
-      errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: colors.onError,
-          width: 2,
-        ),
-        gapPadding: sizesTheme.xs,
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: colors.onError,
-          width: 2,
-        ),
-        gapPadding: sizesTheme.xs,
-      ),
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: sizesTheme.m,
-        vertical: sizesTheme.s,
       ),
     ),
     extensions: [
@@ -179,6 +62,129 @@ ThemeData _getThemeDataFromColors(ThemeColorsData colors) {
         ),
       ),
     ],
+    inputDecorationTheme: fallbackTheme.inputDecorationTheme.copyWith(
+      errorStyle: textTheme.bodyMedium!.copyWith(color: colors.onError),
+      errorMaxLines: 1,
+      contentPadding: EdgeInsets.symmetric(
+        vertical: sizesTheme.s,
+        horizontal: sizesTheme.m,
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: colors.onError, width: 2),
+        gapPadding: sizesTheme.xs,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.primary,
+          width: 2,
+        ),
+        gapPadding: sizesTheme.xs,
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.onError,
+          width: 2,
+        ),
+        gapPadding: sizesTheme.xs,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.grey100,
+          width: 2,
+        ),
+        gapPadding: sizesTheme.xs,
+      ),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.grey100,
+          width: 2,
+        ),
+        gapPadding: sizesTheme.xs,
+      ),
+    ),
+    colorScheme: colors.colorsScheme,
+    highlightColor: colors.secondary.withOpacity(0.1),
+    scaffoldBackgroundColor: colors.background,
+    splashColor: colors.secondary.withOpacity(0.3),
+    iconTheme: IconThemeData(
+      color: colors.text,
+      size: sizesTheme.l,
+    ),
+    textTheme: textTheme,
+    appBarTheme: AppBarTheme(
+      backgroundColor: colors.background,
+      elevation: 0,
+      // The height of the Material app bar to match the height of the
+      // Cupertino navigation bar.
+      toolbarHeight: kMinInteractiveDimensionCupertino,
+      titleTextStyle: textTheme.headlineSmall!.copyWith(
+        color: colors.onPrimary,
+      ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: colors.background,
+      selectedLabelStyle:
+          textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
+      unselectedLabelStyle:
+          textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(borderRadiusTheme.s),
+      ),
+    ),
+    cardTheme: fallbackTheme.cardTheme.copyWith(
+      color: colors.colorsScheme.surface,
+      shadowColor: colors.colorsScheme.shadow,
+      surfaceTintColor: colors.colorsScheme.surfaceTint,
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(borderRadiusTheme.s),
+        side: BorderSide(color: colors.colorsScheme.onSurface),
+      ),
+    ),
+    chipTheme: fallbackTheme.chipTheme.copyWith(
+      backgroundColor: colors.grey50,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(borderRadiusTheme.m),
+      ),
+      side: BorderSide.none,
+      elevation: 0,
+      padding: EdgeInsets.symmetric(
+        horizontal: sizesTheme.s,
+        vertical: sizesTheme.xxxs,
+      ),
+      labelPadding: EdgeInsets.zero,
+    ),
+    dividerTheme: fallbackTheme.dividerTheme.copyWith(
+      space: 1,
+      thickness: 1,
+      color: colors.grey50,
+    ),
+    listTileTheme: fallbackTheme.listTileTheme.copyWith(
+      contentPadding: sizesTheme.asInsets.m.horizontalOnly,
+      horizontalTitleGap: sizesTheme.xxs,
+      minLeadingWidth: sizesTheme.xl,
+      iconColor: colors.colorsScheme.onSurface,
+    ),
+    snackBarTheme: const SnackBarThemeData(elevation: 0),
+    tabBarTheme: TabBarTheme(
+      indicator: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: colors.primary,
+            width: sizesTheme.xxxs,
+          ),
+        ),
+      ),
+      indicatorSize: TabBarIndicatorSize.label,
+      labelPadding: sizesTheme.asInsets.m.horizontalOnly,
+      labelStyle: textTheme.bodyMedium!.copyWith(height: 1),
+      labelColor: colors.primary,
+      unselectedLabelColor: colors.primaryLight,
+      unselectedLabelStyle: textTheme.bodyMedium!.copyWith(height: 1),
+    ),
   );
 }
 

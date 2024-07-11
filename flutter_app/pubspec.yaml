@@ -10,6 +10,7 @@ environment:
   flutter: '>=3.19.6'
 
 dependencies:
+  flutter_shaders: ^0.1.2
   animated_clipper: ^0.2.0+2
   cached_network_image: ^3.2.3
   cupertino_icons: ^1.0.2
