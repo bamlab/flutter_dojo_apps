@@ -1,13 +1,13 @@
 name: flutter_dojo_apps
-description: "A new Flutter project."
+description: 'A new Flutter project.'
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: "none"
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.2.3 <4.0.0"
-  flutter: ">=3.19.6"
+  sdk: '>=3.2.3 <4.0.0'
+  flutter: '>=3.19.6'
 
 dependencies:
   animated_clipper: ^0.2.0+2
@@ -19,7 +19,7 @@ dependencies:
     sdk: flutter
   flutter_animate: ^4.5.0
   flutter_bam_theme:
-    path: "../theme"
+    path: '../theme'
   flutter_cache_manager: ^3.3.1
   flutter_riverpod: ^2.5.1
   flutter_staggered_grid_view: ^0.7.0
@@ -88,3 +88,6 @@ flutter:
     - assets/Background.png
     - assets/play_icon.svg
     - assets/logo.png
+
+  shaders:
+    - assets/myshader.frag
