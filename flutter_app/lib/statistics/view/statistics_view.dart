@@ -16,7 +16,7 @@ class StatisticsView extends StatelessWidget {
       Duration(hours: 9, minutes: 23),
       Duration(hours: 8, minutes: 12),
       Duration(hours: 2, minutes: 36),
-      Duration(hours: 1, minutes: 30),
+      Duration(hours: 10, minutes: 30),
     ];
 
     final totalTime = timeOfTasks.reduce((value, element) => value + element);

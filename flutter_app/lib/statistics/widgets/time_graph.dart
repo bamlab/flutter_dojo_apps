@@ -97,14 +97,27 @@ class _TimeOfTaskBar extends StatelessWidget {
   }
 }
 
-class _ChartBar extends StatelessWidget {
+class _ChartBar extends StatefulWidget {
   const _ChartBar({required this.height});
 
   final double height;
 
   @override
+  State<_ChartBar> createState() => _ChartBarState();
+}
+
+class _ChartBarState extends State<_ChartBar> {
+  double height = 0;
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        height = widget.height;
+      });
+    });
 
     return LightCard(
       border: GradientBoxBorder(
@@ -122,9 +135,13 @@ class _ChartBar extends StatelessWidget {
         topLeft: Radius.circular(4),
         topRight: Radius.circular(4),
       ),
-      child: SizedBox(
-        height: height,
-        width: theme.sizes.xl,
+      child: AnimatedSize(
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+        child: SizedBox(
+          height: height,
+          width: theme.sizes.xl,
+        ),
       ),
     );
   }
